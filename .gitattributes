@@ -1,0 +1,11 @@
+# Normalize line endings; shell scripts must stay LF to run inside the Linux container.
+* text=auto eol=lf
+*.sh text eol=lf
+
+*.png binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# Third-party minified files: no diffs, not counted as project code
+public/assets/vendor/** -diff linguist-vendored

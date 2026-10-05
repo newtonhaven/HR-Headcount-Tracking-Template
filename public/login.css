@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/assets/fonts/open-sans/open-sans-v43-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/assets/fonts/open-sans/open-sans-v43-latin-600.woff2') format('woff2');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", system-ui, sans-serif;
+    background: linear-gradient(to right, #101a31, #406bcf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 16px;
+}
+
+.login-container {
+    background: white;
+    padding: 28px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+}
+
+.logo {
+    width: 96px;
+    height: auto;
+}
+
+.login-container h1 {
+    margin: 12px 0 2px;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.org {
+    margin: 0 0 20px;
+    color: #667;
+    font-size: 0.9rem;
+}
+
+.notice {
+    margin: 0 0 16px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #eef4fd;
+    color: #24456e;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.notice code {
+    display: block;
+    margin-top: 6px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 0.78rem;
+    word-break: break-all;
+}
+
+.error {
+    color: #c62828;
+    background: #fdecea;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+input {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+input:focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 1px;
+    border-color: #4A90E2;
+}
+
+button {
+    width: 100%;
+    background: #4A90E2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #357ABD;
+}

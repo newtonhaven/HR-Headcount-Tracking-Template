@@ -1,0 +1,43 @@
+# Local / small in-house deployment. Settings come from .env (copy .env.example).
+services:
+  web:
+    build: ./docker
+    ports:
+      - "${APP_PORT:-8080}:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_NAME: ${APP_NAME:-Norm Staffing}
+      ORG_NAME: ${ORG_NAME:-Logoipsum Hospital}
+      TZ: ${TZ:-UTC}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-norm_staffing}
+      DB_USER: ${DB_USER:-norm_staffing}
+      DB_PASSWORD: ${DB_PASSWORD:-change-me}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-norm_staffing}
+      MARIADB_USER: ${DB_USER:-norm_staffing}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-change-me}
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+      TZ: ${TZ:-UTC}
+    volumes:
+      # Runs only when the data volume is empty (first start or after `docker compose down -v`).
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  db-data:

@@ -1,0 +1,289 @@
+/* =====================================================================================
+   Base layer on top of stock Bootstrap 5.3 (dark color mode): fonts, theme tokens and the
+   application shell (sidebar, top bar, content area). Components live in app.css.
+   ===================================================================================== */
+
+/* ---------------------------------------------------------------- Fonts (SIL OFL 1.1, license files next to the fonts) */
+
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/open-sans/open-sans-v43-latin-regular.woff2") format("woff2"),
+         url("../fonts/open-sans/open-sans-v43-latin-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/open-sans/open-sans-v43-latin-600.woff2") format("woff2"),
+         url("../fonts/open-sans/open-sans-v43-latin-600.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/roboto/roboto-v48-latin-regular.woff2") format("woff2"),
+         url("../fonts/roboto/roboto-v48-latin-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/roboto/roboto-v48-latin-500.woff2") format("woff2"),
+         url("../fonts/roboto/roboto-v48-latin-500.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/roboto/roboto-v48-latin-700.woff2") format("woff2"),
+         url("../fonts/roboto/roboto-v48-latin-700.woff") format("woff");
+}
+
+/* ---------------------------------------------------------------- Bootstrap dark-mode tokens */
+
+:root[data-bs-theme="dark"] {
+    --bs-font-sans-serif: "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --bs-body-bg: #0A111F;
+    --bs-body-bg-rgb: 10, 17, 31;
+    --bs-body-color: #B4BFDA;
+    --bs-body-color-rgb: 180, 191, 218;
+    --bs-emphasis-color: #E8EDFB;
+    --bs-heading-color: #FFFFFF;
+    --bs-secondary-color: #8591B3;
+    --bs-secondary-bg: #14213D;
+    --bs-tertiary-bg: #1A2A4D;
+    --bs-border-color: rgba(255, 255, 255, 0.16);
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.12);
+    --bs-link-color: #8C9DFC;
+    --bs-link-color-rgb: 140, 157, 252;
+    --bs-link-hover-color: #A9B6FD;
+    --bs-link-hover-color-rgb: 169, 182, 253;
+    --bs-link-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------------------- Shell */
+
+:root {
+    --sidebar-width: 250px;
+    --topbar-height: 56px;
+}
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1030;
+    width: var(--sidebar-width);
+    overflow-y: auto;
+    padding: 0 24px 24px 0;
+    background: #14213D;
+    transition: transform 0.3s ease;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    margin-left: var(--sidebar-width);
+    background: var(--bs-body-bg);
+    transition: margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed .sidebar {
+    transform: translateX(-100%);
+}
+
+body.sidebar-collapsed .content {
+    margin-left: 0;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    body.sidebar-open .sidebar {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .content {
+        transition: none;
+    }
+}
+
+/* ---------------------------------------------------------------- Sidebar */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: var(--topbar-height);
+    margin: 4px 0 12px 24px;
+    text-decoration: none;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 24px 24px;
+}
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 20px;
+    border-left: 3px solid transparent;
+    border-radius: 0 30px 30px 0;
+    color: #9AA6C7;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+}
+
+.side-link i {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #0A111F;
+}
+
+.side-link:hover,
+.side-link.active {
+    color: #FFFFFF;
+    background: #0A111F;
+    border-left-color: #FFFFFF;
+}
+
+.side-link:hover i,
+.side-link.active i {
+    background: #14213D;
+}
+
+.side-link:focus-visible {
+    outline: 2px solid #8C9DFC;
+    outline-offset: -2px;
+}
+
+/* ---------------------------------------------------------------- Top bar */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: var(--topbar-height);
+    padding: 0 24px;
+    background: #14213D;
+}
+
+.topbar-brand {
+    display: flex;
+}
+
+.sidebar-toggler {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: inline-grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #0A111F;
+    color: #8C9DFC;
+}
+
+.sidebar-toggler:hover {
+    color: #FFFFFF;
+}
+
+.topbar-title {
+    color: var(--bs-emphasis-color);
+    font-weight: 600;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* ---------------------------------------------------------------- Loading overlay & back-to-top */
+
+.page-spinner {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0A111F;
+    color: #8C9DFC;
+    transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+}
+
+.page-spinner.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+    display: none;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #8C9DFC;
+    color: #0A111F;
+}
+
+.back-to-top:hover {
+    background: #A9B6FD;
+    color: #0A111F;
+}
