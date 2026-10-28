@@ -1,7 +1,11 @@
-# Norm Staffing
+# Norm Staffing Website
 
-**\[Disclaimer: UI, function and file names are translated from project's original language to English using AI. May include wrong information.]**
-
+> [!WARNING]
+> **Disclaimer: UI, function and file names are translated from project's original language to English using AI. May include wrong information.
+---
+>[!NOTE]
+>Click [Here to See Live Demo](https://hrdemo.samiaktug.dev/index.php) of Website
+---
 Workload-based headcount planning and personnel management for hospitals and other
 shift-based organizations, with built-in analytics.
 
